@@ -8,7 +8,7 @@ function TodoList() {
 
   const dispatch = useDispatch()
 
-  
+
   const Todos = useSelector((state) => state.Todo.Todo)
 
   return (
@@ -27,18 +27,24 @@ function TodoList() {
         </thead>
         <tbody>
           {
-            Todos.map((item)=>(
-            <tr key={item?.id}>
-              <td>{item.Name}</td>
-              <td>{item.Email}</td>
-              <td>{item.Phone}</td>
-              <td>
-                <button onClick={()=>dispatch(DeleteTodo(item.id))} className='btn btn-danger'>Delete</button>
-                <Link to={`/edit/${item.id}`}> <button className='btn btn-dark ms-3'>Edit</button></Link>
-              </td>
-            </tr>
+            Todos.map((item) => (
+              <tr key={item?.id}>
+                <td>{item.Name}</td>
+                <td>{item.Email}</td>
+                <td>{item.Phone}</td>
+                <td>
+                  <button onClick={() => {
+                    if (window.confirm("are you sure do you want to delete this todo")) {
+                      dispatch(DeleteTodo(item.id))
+                    }
+                  }
+                  }
+                    className='btn btn-danger'>Delete</button>
+                  <Link to={`/edit/${item.id}`}> <button className='btn btn-dark ms-3'>Edit</button></Link>
+                </td>
+              </tr>
             ))
-          
+
           }
         </tbody>
       </table>

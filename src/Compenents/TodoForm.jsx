@@ -40,8 +40,10 @@ function TodoForm() {
     }
     if (id) {
       dispatch(UpdateTodo(newTodo))
+      alert("sucessFully edited")
     } else {
       dispatch(AddTodo(newTodo))
+      alert("succesfully added")
     }
 
 
